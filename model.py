@@ -22,10 +22,6 @@ df[categorical_cols] = cat_imp.fit_transform(df[categorical_cols])
 
 
 # # Exploratory Data Analysis
-# 
-# 
-
-# In[2]:
 
 
 # classes_count = df["Loan_Approved"].value_counts()
@@ -64,15 +60,10 @@ df[categorical_cols] = cat_imp.fit_transform(df[categorical_cols])
 
 # # Encoding
 
-# In[ ]:
-
 
 le = LabelEncoder()
 df["Education_Level"] = le.fit_transform(df["Education_Level"])
 df["Loan_Approved"] = le.fit_transform(df["Loan_Approved"])
-
-
-# In[ ]:
 
 
 cols = ["Employment_Status", "Marital_Status", "Loan_Purpose", "Property_Area", "Gender", "Employer_Category"]
@@ -89,8 +80,6 @@ df = pd.concat([df.drop(columns=cols), encoded_df], axis=1)
 
 # # Correlation Heatmap
 
-# In[5]:
-
 
 num_cols = df.select_dtypes(include="number")
 corr_matrix = num_cols.corr()
@@ -104,30 +93,19 @@ sns.heatmap(
 )
 
 
-# In[6]:
-
-
 num_cols.corr()["Loan_Approved"].sort_values(ascending=False)
 
 
 # # Train-Test-Split + Feature Scaling
-
-# In[ ]:
 
 
 X = df.drop("Loan_Approved", axis=1)
 y = df["Loan_Approved"]
 
 
-# In[ ]:
-
-
 X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.2, random_state=42
 )
-
-
-# In[9]:
 
 
 scaler = StandardScaler()
@@ -139,8 +117,6 @@ X_test_scaled
 
 
 # # Train &  Evaluate Models
-
-# In[ ]:
 
 
 nb_model = GaussianNB()
